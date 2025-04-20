@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Potability Prediction System</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Water Potability Prediction System</h1>
+        <p>Predict whether the water is safe to drink based on various chemical parameters.</p>
+    </header>
+    
+    <style>
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            text-align: center;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
+    <section class="form-section">
+        <h2>Enter Water Parameters</h2>
+        <form method="POST" action="/predict" id="water-form">
+            <label for="ph">pH: (0-14)</label>
+            <input type="number" id="ph" name="ph" step="0.1" required>
+
+            <label for="hardness">Hardness (mg/l): (150-250)</label>
+            <input type="number" id="hardness" name="hardness" required>
+
+            <label for="solids">Total Solids (mg/l): (10000-50000)</label>
+            <input type="number" id="solids" name="solids" required>
+
+            <label for="chloramines">Chloramines (mg/l): (1-15)</label>
+            <input type="number" id="chloramines" name="chloramines" required>
+
+            <label for="sulfate">Sulfate (mg/l): (250-400)</label>
+            <input type="number" id="sulfate" name="sulfate" required>
+
+            <label for="conductivity">Conductivity (µS/cm): (250-500)</label>
+            <input type="number" id="conductivity" name="conductivity" required>
+
+            <label for="organic-carbon">Organic Carbon (mg/l): (5-20)</label>
+            <input type="number" id="organic-carbon" name="organic-carbon" required>
+
+            <label for="turbidity">Turbidity (NTU): (1-5)</label>
+            <input type="number" id="turbidity" name="turbidity" required>
+
+            <button type="submit">Predict Potability</button>
+        </form>
+
+        {% if result %}
+            <p id="result">Prediction Result: {{ result }}</p>
+            <!-- Button to trigger modal -->
+            <button id="myBtn" onclick="openModal()">Show Result</button>
+        {% endif %}
+    </section>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Prediction Result</h2>
+            <p>{{ result }}</p>
+        </div>
+    </div>
+    </section>
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Function to open the modal
+        function openModal() {
+            modal.style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Close the modal if the user clicks outside of it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
