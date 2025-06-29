@@ -50,8 +50,8 @@
 - python main.py
 Generates logistic_regression_model.pkl, knn_model.pkl, random_forest_model.pkl, and scaler.pkl.
 
-- 2. Run Web App:
-     python server.py
+2. Run Web App:
+-python server.py
 Visit: http://127.0.0.1:5000
 Enter water parameters and get your prediction!
 
