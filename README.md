@@ -60,9 +60,9 @@ Enter water parameters and get your prediction!
 ---
 
 # Models & Usage
-Logistic Regression – Quick and interpretable baseline.
-KNN – Simple instance-based learner.
-Random Forest – Ensures robustness and handles non-linearity well.
-Feature Scaling – All models expect input normalized via scaler.pkl.
+- Logistic Regression – Quick and interpretable baseline.
+- KNN – Simple instance-based learner.
+- Random Forest – Ensures robustness and handles non-linearity well.
+- Feature Scaling – All models expect input normalized via scaler.pkl.
 
 ---
